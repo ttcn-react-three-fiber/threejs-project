@@ -1,0 +1,1 @@
+cd uploads && npx gltfjsx minion.glb
