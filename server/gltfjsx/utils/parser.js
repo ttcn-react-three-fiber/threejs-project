@@ -226,7 +226,9 @@ ${parseExtras(gltf.parser.json.asset && gltf.parser.json.asset.extras)}*/
         export default function Model(props${options.types ? ": JSX.IntrinsicElements['group']" : ''}) {
           const ref = ${options.types ? 'useRef<THREE.Group>()' : 'useRef()'}
           const snap = useSnapshot(props.state)
-          const { nodes, materials${hasAnimations ? ', animations' : ''} } = useGLTF('/${fileName}'${
+          const { nodes, materials${
+            hasAnimations ? ', animations' : ''
+          } } = useGLTF('http://localhost:8080/uploads/${fileName}'${
     options.draco ? `, ${JSON.stringify(options.draco)}` : ''
   })${options.types ? ' as GLTFResult' : ''}${printAnimations(animations)}
 

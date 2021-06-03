@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 module.exports = () => {
   mongoose
-    .connect('mongodb://localhost:27017/upload-files-datbase', {
+    .connect('mongodb://localhost:27017/upload', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

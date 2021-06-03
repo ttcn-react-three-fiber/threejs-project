@@ -7,10 +7,10 @@ import { useFrame } from '@react-three/fiber'
 import { useSnapshot } from 'valtio'
 import { useGLTF } from '@react-three/drei'
 
-export default function Model(props) {
+export default function ShoeModel(props) {
   const ref = useRef()
   const snap = useSnapshot(props.state)
-  const { nodes, materials } = useGLTF('/minion.glb')
+  const { nodes, materials } = useGLTF('http://localhost:8080/uploads/shoe-draco.glb')
 
   // Animate model
   useFrame((state) => {
@@ -36,33 +36,16 @@ export default function Model(props) {
       onPointerOut={(e) => e.intersections.length === 0 && set(null)}
       onPointerMissed={() => (props.state.current = null)}
       onPointerDown={(e) => (e.stopPropagation(), (props.state.current = e.object.material.name))}>
-      <mesh geometry={nodes['1'].geometry} material={nodes['1'].material} />
-      <mesh geometry={nodes['2'].geometry} material={nodes['2'].material} />
-      <mesh geometry={nodes['3'].geometry} material={nodes['3'].material} />
-      <mesh geometry={nodes['4'].geometry} material={nodes['4'].material} />
-      <mesh geometry={nodes['5'].geometry} material={nodes['5'].material} />
-      <mesh geometry={nodes['6'].geometry} material={nodes['6'].material} />
-      <mesh geometry={nodes['7'].geometry} material={nodes['7'].material} />
-      <mesh geometry={nodes['8'].geometry} material={nodes['8'].material} />
-      <mesh geometry={nodes['9'].geometry} material={nodes['9'].material} />
-      <mesh geometry={nodes['10'].geometry} material={nodes['10'].material} />
-      <mesh geometry={nodes['11'].geometry} material={nodes['11'].material} />
-      <mesh geometry={nodes['12'].geometry} material={nodes['12'].material} />
-      <mesh geometry={nodes['13'].geometry} material={nodes['13'].material} />
-      <mesh geometry={nodes['14'].geometry} material={nodes['14'].material} />
-      <mesh geometry={nodes['15'].geometry} material={nodes['15'].material} />
-      <mesh geometry={nodes['16'].geometry} material={nodes['16'].material} />
-      <mesh geometry={nodes['17'].geometry} material={nodes['17'].material} />
-      <mesh geometry={nodes['18'].geometry} material={nodes['18'].material} />
-      <mesh geometry={nodes['19'].geometry} material={nodes['19'].material} />
-      <mesh geometry={nodes['20'].geometry} material={nodes['20'].material} />
-      <mesh geometry={nodes['21'].geometry} material={nodes['21'].material} />
-      <mesh geometry={nodes['22'].geometry} material={nodes['22'].material} />
-      <mesh geometry={nodes['23'].geometry} material={nodes['23'].material} />
-      <mesh geometry={nodes['24'].geometry} material={nodes['24'].material} />
-      <mesh geometry={nodes['25'].geometry} material={nodes['25'].material} />
+      <mesh geometry={nodes.shoe.geometry} material={materials.laces} material-color={snap.items.laces} />
+      <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} material-color={snap.items.mesh} />
+      <mesh geometry={nodes.shoe_2.geometry} material={materials.caps} material-color={snap.items.caps} />
+      <mesh geometry={nodes.shoe_3.geometry} material={materials.inner} material-color={snap.items.inner} />
+      <mesh geometry={nodes.shoe_4.geometry} material={materials.sole} material-color={snap.items.sole} />
+      <mesh geometry={nodes.shoe_5.geometry} material={materials.stripes} material-color={snap.items.stripes} />
+      <mesh geometry={nodes.shoe_6.geometry} material={materials.band} material-color={snap.items.band} />
+      <mesh geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} />
     </group>
   )
 }
 
-useGLTF.preload('/minion.glb')
+useGLTF.preload('http://localhost:8080/uploads/shoe-draco.glb')

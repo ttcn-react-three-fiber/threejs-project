@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export default function Model(props) {
   const ref = useRef()
   const snap = useSnapshot(props.state)
-  const { nodes, materials } = useGLTF('/shoe-draco.glb')
+  const { nodes, materials } = useGLTF('http://localhost:8080/uploads/shoe-draco.glb')
 
   // Animate model
   useFrame((state) => {

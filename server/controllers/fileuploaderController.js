@@ -5,10 +5,12 @@ const MultipleFile = require('../models/multiplefile')
 const singleFileUpload = async (req, res, next) => {
   try {
     const { spawn } = require('child_process')
+    // let pos = filePath.lastIndexOf(".");
 
     const file = new SingleFile({
       fileName: req.file.originalname,
       filePath: req.file.path,
+      filePathJs: req.file.path.replace(/\.[^.]+$/, '.js'),
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
     })
