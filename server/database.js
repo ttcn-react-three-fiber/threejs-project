@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 module.exports = () => {
   mongoose
-    .connect('mongodb://localhost:27017/upload', {
+    .connect('mongodb://localhost:27017/up', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

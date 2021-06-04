@@ -1,6 +1,7 @@
 'use strict'
 const SingleFile = require('../models/singlefile')
 const MultipleFile = require('../models/multiplefile')
+const fs = require('fs')
 
 const singleFileUpload = async (req, res, next) => {
   try {
@@ -12,7 +13,7 @@ const singleFileUpload = async (req, res, next) => {
       filePath: req.file.path,
       filePathJs: req.file.path.replace(/\.[^.]+$/, '.js'),
       fileType: req.file.mimetype,
-      fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
+      fileSize: fileSizeFormatter(req.file.size, 2), // 0.00,
     })
     await file.save()
     res.status(201).send('File Uploaded Successfully')
@@ -29,10 +30,26 @@ const singleFileUpload = async (req, res, next) => {
     bat.on('exit', (code) => {
       console.log(`Child exited with code ${code}`)
     })
+    var initialTime = Date.now()
+    const timeOut = setTimeout(
+      (t) => {
+        file.fileData = setTimeout(
+          fs.readFile(`${file.filePathJs}`, (data) => {
+            console.log(data)
+          })
+        )
+      },
+      1000,
+      initialTime
+    )
+    clearTimeout(timeOut)
+
+    await file.save()
   } catch (error) {
     res.status(400).send(error.message)
   }
 }
+
 const multipleFileUpload = async (req, res, next) => {
   try {
     let filesArray = []

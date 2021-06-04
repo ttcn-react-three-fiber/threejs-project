@@ -8,6 +8,10 @@ const singleFileSchema = new Schema(
       type: String,
       required: true,
     },
+    fileData: {
+      type: String,
+      require: true,
+    },
     filePath: {
       type: String,
       required: true,

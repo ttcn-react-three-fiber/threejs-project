@@ -32,12 +32,3 @@ export const getMultipleFiles = async () => {
         throw error;
     }
 }
-
-export const getModel = async () => {
-    try {
-        const {data} = await axios.get('http://localhost:8080/uploads/shoemodel.js')
-        return data
-    } catch (error) {
-        throw error;
-    }
-}
